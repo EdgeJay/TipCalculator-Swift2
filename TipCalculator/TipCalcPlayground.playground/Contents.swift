@@ -43,7 +43,38 @@ let tipCalc = TipCalculatorModel(total: 120, taxPct: 0.05)
 tipCalc.returnPossibleTips()
 
 // Testing with UITableView
+class TestDataSource: NSObject, UITableViewDataSource {
+    let tipCalc = TipCalculatorModel(total: 33.25, taxPct: 0.06)
+    var possibleTips = [Int: (tipAmt: Double, total: Double)]()
+    var sortedKeys: [Int] = []
+    
+    override init() {
+        possibleTips = tipCalc.returnPossibleTips()
+        sortedKeys = Array(possibleTips.keys).sort()
+        super.init()
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return sortedKeys.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: UITableViewCellStyle.Value2, reuseIdentifier: nil)
+        let tipPct = sortedKeys[indexPath.row]
+        let tipAmt = possibleTips[tipPct]!.tipAmt
+        let total = possibleTips[tipPct]!.total
+        
+        cell.textLabel?.text = "\(tipPct)%"
+        cell.detailTextLabel?.text = String(format: "Tip: $%0.2f, Total: $%0.2f", tipAmt, total)
+        
+        return cell
+    }
+}
 
+let dataSource = TestDataSource()
+let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: 320, height: 320), style: .Plain)
+tableView.dataSource = dataSource
+tableView.reloadData()
 
 // tuples
 let tipAndTotal = (4.00, 25.19)

@@ -2,6 +2,14 @@
 
 import Cocoa
 
+var i = 0.0
+while i < 10.0 {
+    let j = cos(i)
+    let k = sin(i)
+    let m = 5.0 * tan(i)
+    i += 0.2;
+}
+
 @objc protocol Speaker {
     func speak()
     optional func tellAJoke()
@@ -56,5 +64,13 @@ let cat: Speaker = Cat()
 cat.speak()
 cat.tellAJoke?()
 
+cat is Speaker
+cat is Cat
+
 (cat as! Cat).delegate = CatHandler()
 (cat as! Cat).needFood()
+
+// testing GCD
+dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+    print("Print line from block")
+})
