@@ -46,11 +46,12 @@ class ViewController: UIViewController {
     @IBAction func onCalculate(sender: AnyObject) {
         tipCalc.total = (txtTotal.text! as NSString).doubleValue
         let possibleTips = tipCalc.returnPossibleTips()
-        var results = "", formattedValue = ""
+        var results = "", formattedValue = "", grandTotal = ""
         
-        for (tipPct, tipValue) in possibleTips {
-            formattedValue = String(format: "%0.2f", tipValue)
-            results += "\(tipPct)%: $\(formattedValue)\n"
+        for (tipPct, tipResult) in possibleTips {
+            formattedValue = String(format: "%0.2f", tipResult.tipAmt)
+            grandTotal = String(format: "%0.2f", tipResult.total)
+            results += "\(tipPct)%: $\(formattedValue) (Grand Total: $\(grandTotal))\n"
         }
         txtResult.text = results
     }
