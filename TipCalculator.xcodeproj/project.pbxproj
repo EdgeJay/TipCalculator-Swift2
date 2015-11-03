@@ -17,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		3211D29F1BE8456B000C9F00 /* TipCalcPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = TipCalcPlayground.playground; sourceTree = "<group>"; };
+		3211D2A01BE8A21D000C9F00 /* MiscPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MiscPlayground.playground; sourceTree = "<group>"; };
 		3223A5221BE710D0007CCE82 /* TipCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TipCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3223A5251BE710D0007CCE82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3223A5271BE710D0007CCE82 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +63,7 @@
 				3223A5371BE711B9007CCE82 /* TipCalculatorModel.swift */,
 				3223A5291BE710D0007CCE82 /* Main.storyboard */,
 				3211D29F1BE8456B000C9F00 /* TipCalcPlayground.playground */,
+				3211D2A01BE8A21D000C9F00 /* MiscPlayground.playground */,
 				3223A52C1BE710D0007CCE82 /* Assets.xcassets */,
 				3223A52E1BE710D0007CCE82 /* LaunchScreen.storyboard */,
 				3223A5311BE710D0007CCE82 /* Info.plist */,
