@@ -1,38 +1,33 @@
-//: Playground - noun: a place where people can play
+// based on Swift 2 tutorial:
+// http://www.raywenderlich.com/115253/swift-2-tutorial-a-quick-start
+// http://www.raywenderlich.com/115300/swift-2-tutorial-part-3-tuples-protocols-delegates-and-table-views
 
 import UIKit
 
-var count = 1
-++count
-let index = count
-let price: Double = 19.99
-let str = "Hello, playground"
-print("The price is $\(price)")
-
-class TipCalculator {
-    let total: Double
-    let taxPct: Double
-    let subTotal: Double
-    let possibleTips: [Double] = [0.15, 0.18, 0.20] // explicit style, inferred style will be let possibleTips: [] = [...]
+class TipCalculatorModel {
+    var total: Double
+    var taxPct: Double
+    var subTotal: Double {
+        get {
+            return total / (taxPct + 1)
+        }
+    }
+    // explicit style, inferred style will be let possibleTips: [] = [...]
+    let possibleTips: [Double] = [0.15, 0.18, 0.20]
     
     init(total: Double, taxPct: Double) {
         self.total = total
         self.taxPct = taxPct
-        subTotal = total / (taxPct + 1)
     }
     
-    func calcTipWithTipPct(tipPct: Double) -> Double {
-        return subTotal * tipPct
+    func calcTipWithTipPct(tipPct: Double) -> (tipAmt:Double, total:Double) {
+        let tipAmt = subTotal * tipPct
+        let finalTotal = total + tipAmt
+        return (tipAmt, finalTotal)
     }
     
-    func printPossibleTips() {
-        for possibleTip in possibleTips {
-            print("\(possibleTip * 100)%: \(calcTipWithTipPct(possibleTip))")
-        }
-    }
-    
-    func returnPossibleTips() -> [Int: Double] {
-        var retVal = [Int: Double]()
+    func returnPossibleTips() -> [Int: (tipAmt:Double, total:Double)] {
+        var retVal = [Int: (tipAmt:Double, total:Double)]()
         
         for i in 0..<possibleTips.count {
             let possibleTip = possibleTips[i]
@@ -44,9 +39,11 @@ class TipCalculator {
     }
 }
 
-let tipCalc = TipCalculator(total: 120, taxPct: 0.05)
+let tipCalc = TipCalculatorModel(total: 120, taxPct: 0.05)
 tipCalc.returnPossibleTips()
-tipCalc.printPossibleTips()
+
+// Testing with UITableView
+
 
 // tuples
 let tipAndTotal = (4.00, 25.19)
