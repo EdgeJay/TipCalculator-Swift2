@@ -74,3 +74,24 @@ cat is Cat
 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
     print("Print line from block")
 })
+
+// testing optional binding
+var optionalDouble:Double? = nil
+//var optionalDouble:Double? = 10.0
+if let testDouble = optionalDouble {
+    print("optionalDouble is not nil")
+}
+
+// dictionary manipulation
+var muppets: [String: String] = ["Frog": "Kermit", "Pig": "Miss Piggy", "Weirdo": "Gonzo"]
+let sortedKeys = Array(muppets.keys).sort()
+
+print("\n--- Unsorted ---")
+for (type, muppet) in muppets {
+    print("\(type):\t\(muppet)")
+}
+
+print("\n--- Sorted ---")
+for k in 0..<sortedKeys.count {
+    print("\(sortedKeys[k]):\t\(muppets[sortedKeys[k]]!)")
+}
